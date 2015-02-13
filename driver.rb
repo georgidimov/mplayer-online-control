@@ -1,53 +1,43 @@
-class PlayerDriver
-  def initialize
-    @socket_location = '/tmp/mplayer_socket'
-    @player_process = start_player
+class Player
+  def initialize(passed_socket_location = nil)
+    unless passed_socket_location.nil?
+      @socket_location = passed_socket_location
+    else
+      @socket_location = '/tmp/mplayer_socket'
+    end
+
+    @player_process_id = start_player
   end
-  
+
   def create_socket
-    pid = fork do
+    process_id = fork do
       system "mkfifo #{@socket_location}"
     end
-    
-    pid
+
+    Process.wait(process_id)
   end
 
   def start_player
-    Process.wait(create_socket)
-    
-    pid = Process.spawn "mplayer -idle -input file=#{@socket_location}" 
+    create_socket
 
-    pid
+    player_id = Process.spawn "mplayer -idle -input file=#{@socket_location}"
+    player_id
   end
 
   def stop_player
-    system "kill #{@player_process}"
-    puts "killed #{@player_process}"
+    system "kill #{@player_process_id}"
     delete_socket
   end
 
   def delete_socket
     system "rm #{@socket_location}"
-    puts "Deleted!"
   end
 
-  def f
-    puts "hohoh!"
-  end
+  private :create_socket, :delete_socket
 end
 
-
-driver = PlayerDriver.new
-sleep(1)
-driver.f
-sleep(7)
-driver.f
-driver.stop_player
-#driver.start_player
-
-#driver.stop_player
-#driver.delete_socket
-#driver.delete_socket
-#s = UNIXServer.new('/tmp/s')
-#s.close
-
+p = Player.new
+sleep(2)
+system("echo \"loadfile /tmp/test.mp3\" > /tmp/mplayer_socket")
+sleep(10)
+p.stop_player
