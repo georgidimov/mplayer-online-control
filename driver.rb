@@ -41,6 +41,22 @@ class CommandParser
     execute command
   end
 
+  def pause
+    execute 'pause'
+  end
+  
+  def stop
+    execute 'stop'
+  end
+
+  def volume_up
+    execute 'volume +10'
+  end
+
+  def volume_down
+    execute 'volume -10'
+  end
+
   def execute(command)
     system("echo \"#{command}\" > #{@socket_location}")   
   end
@@ -50,9 +66,12 @@ location = '/tmp/mplayer_socket'
 song_location = '/tmp'
 song_name = 'test.mp3'
 p = Player.new(location)
-sleep(2)
 c = CommandParser.new(location)
 c.play(song_location, song_name)
+20.times do
+  c.volume_down
+  sleep(0.5)
+end
 sleep(10)
 p.stop_player
 #system("echo \"loadfile /tmp/test.mp3\" > /tmp/mplayer_socket")
