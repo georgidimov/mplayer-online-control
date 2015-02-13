@@ -1,11 +1,6 @@
 class Player
-  def initialize(passed_socket_location = nil)
-    unless passed_socket_location.nil?
-      @socket_location = passed_socket_location
-    else
-      @socket_location = '/tmp/mplayer_socket'
-    end
-
+  def initialize(passed_socket_location)
+    @socket_location = passed_socket_location
     @player_process_id = start_player
   end
 
@@ -36,8 +31,29 @@ class Player
   private :create_socket, :delete_socket
 end
 
-p = Player.new
+class CommandParser
+  def initialize(passed_socket_location)
+    @socket_location = passed_socket_location
+  end
+
+  def play(song_location = '', song_name)
+    command = "loadfile #{song_location}/#{song_name}"
+    execute command
+  end
+
+  def execute(command)
+    system("echo \"#{command}\" > #{@socket_location}")   
+  end
+  private :execute
+end
+location = '/tmp/mplayer_socket'
+song_location = '/tmp'
+song_name = 'test.mp3'
+p = Player.new(location)
 sleep(2)
-system("echo \"loadfile /tmp/test.mp3\" > /tmp/mplayer_socket")
+c = CommandParser.new(location)
+c.play(song_location, song_name)
 sleep(10)
 p.stop_player
+#system("echo \"loadfile /tmp/test.mp3\" > /tmp/mplayer_socket")
+#sleep(10)
