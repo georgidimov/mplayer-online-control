@@ -1,10 +1,14 @@
+require 'json'
+
 get '/run' do
   source_file = '/tmp/mplayer_socket'
   Player.run(source_file)
   CommandParser.run(source_file)
+
+  redirect '/'
 end
 
-get '/kill' do
+post '/kill' do
   Player.stop
 end
 
@@ -12,10 +16,14 @@ get '/' do
   erb :base
 end
 
-get '/play' do
-  CommandParser.play('/tmp', 'test.mp3')
+post '/play' do
+  json = request.body.read
+  song_name = JSON.parse(json)["name"]
+  song_name = song_name.gsub(' ', '\ ')
+  puts song_name
+  CommandParser.play('/home/georgi/Music/last\ added', song_name)
 end
 
-get '/stop' do
+post '/stop' do
   CommandParser.stop
 end

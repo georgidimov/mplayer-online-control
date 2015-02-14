@@ -15,13 +15,32 @@ $( document ).ready(function() {
 	});
 */
 
-	$("input[name*='play']").hover(function () {
-		$.get( "ajax/test.html", function( data ) {
-  $( ".result" ).html( data );
-  alert( "Load was performed." );
-});	
+	$("input[name*='play']").click(function () {
+
 	});
 	
-
+	$("input[name*='stop']").click(function () {
+		$.get( "/stop" );
+	});
+	
+	$("input[name*='next']").click(function () {
+		$.get( "/next" );
+	});
+	
+	$("input[name*='prev']").click(function () {
+		$.get( "/play" );
+	});
+		
+	$("#songlist li").click(function () {
+				$.ajax({
+		url: '/play',
+		type: 'POST',
+		dataType: 'json',
+		contentType: "application/json",
+		data: JSON.stringify({name: $(this).text()}),
+		success: function(data){
+		}
+		})
+	})
 });
  
