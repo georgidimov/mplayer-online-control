@@ -1,1 +1,2 @@
-source_folder: '/home/georgi/music/last added'
+source_folder:   '/home/georgi/Music/last added'
+socket_location: '/tmp/mplayer_socket'
