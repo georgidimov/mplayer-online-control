@@ -7,12 +7,12 @@ $( document ).ready(function() {
 		$.post( "/stop" );
 	});
 	
-	$("input[name*='next']").click(function () {
-		$.post( "/next" );
+	$("input[name*='volume_up']").click(function () {
+		$.post( "/volume_up" );
 	});
 	
-	$("input[name*='prev']").click(function () {
-		$.post( "/prev" );
+	$("input[name*='volume_down']").click(function () {
+		$.post( "/volume_down" );
 	});
 		
 	$("#songlist li").click(function () {
