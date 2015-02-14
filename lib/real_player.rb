@@ -10,7 +10,7 @@ class Player
 
   def self.create_socket
     process_id = fork do
-      system "mkfifo #{@@socket_location}"
+      system("mkfifo #{@@socket_location}")
     end
 
     Process.wait(process_id)
@@ -19,17 +19,17 @@ class Player
   def self.start_player
     create_socket
 
-    player_id = Process.spawn "mplayer -idle -input file=#{@@socket_location}"
+    player_id = Process.spawn("mplayer -idle -input file=#{@@socket_location}")
     player_id
   end
 
   def self.stop_player
-    system "kill #{@@player_process_id}"
+    system("kill #{@@player_process_id}")
     delete_socket
   end
 
   def self.delete_socket
-    system "rm #{@@socket_location}"
+    system("rm #{@@socket_location}")
   end
 
   private_class_method :create_socket, :delete_socket
@@ -42,32 +42,32 @@ class CommandParser
   end
 
   def self.execute(command)
-    system "echo \"#{command}\" > #{@@socket_location}"
+    system("echo \"#{command}\" > #{@@socket_location}")
   end
 
   def self.play(song_location = '', song_name)
     command = "loadfile #{song_location}/#{song_name}"
-    execute command
+    execute(command)
   end
 
   def self.pause
-    execute 'pause'
+    execute('pause')
   end
 
   def self.stop
-    execute 'stop'
+    execute('stop')
   end
 
   def self.loop
-    execute 'loop 0'
+    execute('loop 0')
   end
 
   def self.volume_up
-    execute 'volume +10'
+    execute('volume +10')
   end
 
   def self.volume_down
-    execute 'volume -10'
+    execute('volume -10')
   end
  private_class_method :execute
 end
