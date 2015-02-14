@@ -4,4 +4,8 @@ class Directory
       file.sub!(path + '/', '')
     end
   end
+
+  def self.contain?(file_location)
+    files(file_location).empty?
+  end
 end
