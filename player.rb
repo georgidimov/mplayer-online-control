@@ -17,6 +17,8 @@ class Player
 
     player_id = Process.spawn "mplayer -idle -input file=#{@socket_location}"
     player_id
+
+    puts "Player is ready to work"
   end
 
   def stop_player
@@ -66,7 +68,7 @@ class CommandParser
   end
   private :execute
 end
-
+puts "workss"
 =begin
 location = '/tmp/mplayer_socket'
 song_location = '/tmp'
