@@ -16,19 +16,19 @@ $( document ).ready(function() {
 */
 
 	$("input[name*='play']").click(function () {
-
+		$.post( "pause" );
 	});
 	
 	$("input[name*='stop']").click(function () {
-		$.get( "/stop" );
+		$.post( "/stop" );
 	});
 	
 	$("input[name*='next']").click(function () {
-		$.get( "/next" );
+		$.post( "/next" );
 	});
 	
 	$("input[name*='prev']").click(function () {
-		$.get( "/play" );
+		$.post( "/prev" );
 	});
 		
 	$("#songlist li").click(function () {

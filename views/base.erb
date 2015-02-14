@@ -11,10 +11,9 @@
  		<input name="play" type="image" src="images/play.png">
     <input name="stop" type="image" src="images/stop.png">
 
-    <%source_folder = '/home/georgi/Music/last added'%>
     <ul id="songlist">
-      <% Dir.glob("#{source_folder}/*.mp3").each do |file| %>
-           <li><%= file.sub(source_folder + '/', '')  %></li>
+      <% Directory.files(settings.source_folder).each do |file| %>
+           <li><%= file  %></li>
       <% end %>
     </ul>
 	</body>
