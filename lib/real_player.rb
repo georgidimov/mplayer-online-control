@@ -1,13 +1,13 @@
 class Player
   def self.run(passed_socket_location)
     @@socket_location   = passed_socket_location
-    @@player_process_id = start_player 
+    @@player_process_id = start_player
   end
 
   def self.stop
     stop_player
   end
- 
+
   def self.create_socket
     process_id = fork do
       system "mkfifo #{@@socket_location}"
@@ -32,15 +32,11 @@ class Player
     system "rm #{@@socket_location}"
   end
 
-  private_class_method :create_socket, :delete_socket, :start_player, :stop_player
+  private_class_method :create_socket, :delete_socket
+  private_class_method :start_player,  :stop_player
 end
 
 class CommandParser
-=begin
-  def initialize(passed_socket_location)
-    @socket_location = passed_socket_location
-  end
-=end
   def self.run(passed_socket_location)
     @@socket_location = passed_socket_location
   end
@@ -75,17 +71,3 @@ class CommandParser
   end
  private_class_method :execute
 end
-
-=begin
-location = '/tmp/mplayer_socket'
-song_location = '/tmp'
-song_name = 'test.mp3'
-p = Player.new(location)
-c = CommandParser.new(location)
-c.play(song_location, song_name)
-puts "play bitch"
-sleep(5)
-p.stop_player
-=end
-#system("echo \"loadfile /tmp/test.mp3\" > /tmp/mplayer_socket")
-#sleep(10)

@@ -12,7 +12,7 @@ get '/kill' do
   Player.stop
 end
 
-get '/' do 
+get '/' do
   erb :base
 end
 
@@ -21,8 +21,8 @@ post '/pause' do
 end
 
 post '/play' do
-  json = request.body.read
-  song_name = JSON.parse(json)["name"]
+  received_string = request.body.read
+  song_name = JSON.parse(received_string)["name"]
   song_name = song_name.gsub(' ', '\ ')
   path      = settings.source_folder.gsub(' ', '\ ')
   CommandParser.play(path, song_name)
