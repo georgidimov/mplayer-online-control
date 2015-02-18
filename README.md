@@ -1,1 +1,1 @@
-# mplayer-online-control
+# mplayer-remote-control
