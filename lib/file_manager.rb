@@ -1,7 +1,7 @@
 class Directory
   def self.files(path)
     Dir.glob("#{path}/*.mp3").select do |file|
-      file.sub!(path + '/', '')
+      file.sub!(path + '/', '').sub!('.mp3', '')
     end
   end
 

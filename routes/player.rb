@@ -29,7 +29,7 @@ post '/play' do
   path      = settings.source_folder.gsub(' ', '\ ')
 
   if Directory.contain?(path + '\\' + song_name)
-    CommandParser.play(path, song_name)
+    CommandParser.play(path, song_name + '.mp3')
   end
 end
 
