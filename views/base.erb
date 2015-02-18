@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<!--<link rel="stylesheet" type="text/css" href="styleTest.css">-->
-	<script src="javascript/jquery-1.9.1.js"></script>
-	<script src="javascript/player.js"></script>
-	<script src="javascript/bootstrap.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<!--<link rel="stylesheet" type="text/css" href="styleTest.css">-->
+		<script src="javascript/jquery-1.9.1.js"></script>
+		<script src="javascript/player.js"></script>
+		<script src="javascript/bootstrap.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+		<!-- Custom Fonts -->
+	    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	    <link href="font-awesome/css/font.css" rel="stylesheet" type="text/css">
+	    <link href="font-awesome/css/font-2.css" rel="stylesheet" type="text/css">
 	</head>
+
 	<body id="page-top" class="index">
-		
-	<nav class="navbar navbar-inverse navbar-top">
- 		<input name="volume_down" type="image" src="images/prev.png">
- 		<input name="volume_up" type="image" src="images/next.png">
- 		<input name="play" type="image" src="images/play.png">
-    	<input name="stop" type="image" src="images/stop.png">
-	</nav>
-    <ul id="songlist" class="list-group">
-      <% Directory.files(settings.source_folder).each do |file| %>
-           <li class="list-group-item"><%= file  %></li>
-      <% end %>
-    </ul>
+		<nav class="navbar navbar-inverse navbar-top">
+	 		<input name="volume_down" type="image" src="images/prev.png">
+	 		<input name="volume_up" type="image" src="images/next.png">
+	 		<input name="play" type="image" src="images/play.png">
+	    	<input name="stop" type="image" src="images/stop.png">
+		</nav>
+
+		<div class="col-sm-12">
+			<ul id="songlist" class="list-group">
+			  <% Directory.files(settings.source_folder).each do |file| %>
+			       <li class="list-group-item"><%= file  %></li>
+			  <% end %>
+			</ul>
+		</div>
 	</body>
 </html>
