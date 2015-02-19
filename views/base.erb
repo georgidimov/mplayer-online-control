@@ -15,13 +15,17 @@
 	</head>
 
 	<body id="page-top" class="index">
-		<nav class="navbar navbar-inverse navbar-top">
-	 		<input name="volume_down" type="image" src="images/volume_down.png">
-	 		<input name="volume_up" type="image" src="images/volume_up.png">
-	 		<input name="play" type="image" src="images/play.png">
-	    	<input name="stop" type="image" src="images/stop.png">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="">
+		 		<input name="volume_down" type="image" src="images/volume_down.png">
+		 		<input name="volume_up" type="image" src="images/volume_up.png">
+		 		<input name="play" type="image" src="images/play.png">
+		    	<input name="stop" type="image" src="images/stop.png">
+	    	</div>
 		</nav>
-
+		<br>
+		<br>
+		<br>
 		<div class="col-sm-12">
 			<ul id="songlist" class="list-group">
 			  <% Directory.files(settings.source_folder).each do |file| %>
