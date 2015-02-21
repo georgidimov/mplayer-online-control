@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<!--<link rel="stylesheet" type="text/css" href="styleTest.css">-->
-	<script src="javascript/jquery-1.9.1.js"></script>
-	<script src="javascript/player.js"></script>
-	</head>
-	<body>
- 		<input name="volume_down" type="image" src="images/prev.png">
- 		<input name="volume_up" type="image" src="images/next.png">
- 		<input name="play" type="image" src="images/play.png">
-    <input name="stop" type="image" src="images/stop.png">
+		<!--<link rel="stylesheet" type="text/css" href="styleTest.css">-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="javascript/jquery-1.9.1.js"></script>
+		<script src="javascript/player.js"></script>
+		<script src="javascript/bootstrap.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
-    <ul id="songlist">
-      <% Directory.files(settings.source_folder).each do |file| %>
-           <li><%= file  %></li>
-      <% end %>
-    </ul>
+		<!-- Custom Fonts -->
+	    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	    <link href="font-awesome/css/font.css" rel="stylesheet" type="text/css">
+	    <link href="font-awesome/css/font-2.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body id="page-top" class="index">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="">
+		 		<input name="volume_down" type="image" src="images/volume_down.png">
+		 		<input name="volume_up" type="image" src="images/volume_up.png">
+		 		<input name="play" type="image" src="images/play.png">
+		    	<input name="stop" type="image" src="images/stop.png">
+	    	</div>
+		</nav>
+		<br>
+		<br>
+		<br>
+		<div class="col-sm-12">
+			<ul id="songlist" class="list-group">
+			  <% Directory.files(settings.source_folder).each do |file| %>
+			       <li class="list-group-item"><%= file  %></li>
+			  <% end %>
+			</ul>
+		</div>
 	</body>
 </html>
