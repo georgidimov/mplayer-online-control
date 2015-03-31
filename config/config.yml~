@@ -1,0 +1,2 @@
+source_folder:   "/home/yourname/Music"
+socket_location: "/tmp/mplayer_socket"
